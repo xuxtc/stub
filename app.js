@@ -3,13 +3,6 @@ const bodyParser = require('body-parser');
 
 const data = require('./data')
 
-const validateToken = (token) => {
-	if (token == 'ASDF') {
-		return true
-	}
-	return false
-}
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,23 +10,29 @@ app.use((req,res,next) => {
 	res.header('Access-Control-Allow-Origin', '*')
 	res.header('Access-Control-Allow-Methods' , 'POST, GET');
 	res.header('Access-Control-Allow-Credentials' , 'ture');
-
 	next();
 })
 
+app.post('/login', (req, res) => {
+	var uid = req.body.email
+
+	if (uid && uid == data.profile.uid) {
+		res.status(200).send(data.profile)
+	} else {
+		res.status(403).send('username invalid')
+	}
+})
+
 app.get('/profile', (req, res) => {
-  res.send(data.profile)
+	if (req.get('Token') != data.profile.token) {
+		res.status(401).send('invalid token')
+	} else {
+  	res.status(200).send(data.profile)
+	}
 })
 
 app.get('/games', (req, res) => {
-  res.send(data.games)
-})
-
-app.post('/login', (req, res) => {
-	if (!validateToken(req.get('Token'))) {
-		res.status(401).send('token err')
-	}
-  res.send(data.login)
+  res.status(200).send(data.games)
 })
 
 app.post('/bets', (req, res)=> {
@@ -42,12 +41,10 @@ app.post('/bets', (req, res)=> {
 	var credits = req.body.credits
 	var balance = data.profile.credits - credits
 
-	if (!validateToken(req.get('Token'))) {
-		res.status(401).send('token err')
-	}
-
-	if(credits > 0 && balance > 0) {
-		res.status(200).send('your balance is ' + balance)
+	if (req.get('Token') != data.profile.token) {
+		res.status(401).send('invalid token')
+	}else if( credits > -1 && balance > 0) {
+		res.status(200).send({"code" : 200, "msg" : "Success"})
 	}
 	else{
 		res.status(400).send('not enough credits')

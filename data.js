@@ -1,14 +1,10 @@
 module.exports = {
- login : {
-    "email" : "123@tw.com",
-    "token" : "ASDF"
-},
-
- profile :  {
-    "id": "123",
-    "email" : "123@tw.com",
-    "credits" : 230,
-    "token" : "ASDF"
+ profile : {
+    "uid" : "123@tw.com",
+    "name" : "twTest",
+    "token" : "ASDF",
+    "expired" : -1,
+    "credits" : 230
 },
 
  games : [
@@ -17,12 +13,12 @@ module.exports = {
       "title" : "title1",
       "options" : [
       {
-        "id": "1-1",
+        "id": 1,
         "description" : "this is a description",
         "odds": "1.5%"
       },
       {
-        "id": "1-2",
+        "id": 2,
         "description" : "this is a description too",
         "odds": "3.5%"
       }]
@@ -32,7 +28,7 @@ module.exports = {
       "title" : "title2",
       "options" : [
       {
-        "id": "1-1",
+        "id": 1,
         "description" : "this is a description 3",
         "odds": "1.5%"
       }]
