@@ -3,6 +3,14 @@ const bodyParser = require('body-parser');
 
 const data = require('./data')
 
+const sampleFunc = (arg)=> {
+		return {"name":arg}
+}
+
+app.get('/test', (req, res) => {
+	res.status(200).send(sampleFunc('test'))
+})
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
