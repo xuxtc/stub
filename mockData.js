@@ -1,13 +1,12 @@
-module.exports = {
- profile : {
+ export const profile = {
     "uid" : "123@tw.com",
     "name" : "twTest",
     "token" : "ASDF",
     "expired" : -1,
     "credits" : 230
-},
+};
 
- games : [
+ export const games = [
     {
       "id" : 1,
       "title" : "title1",
@@ -33,4 +32,3 @@ module.exports = {
         "odds": "1.5%"
       }]
     }]
-  }

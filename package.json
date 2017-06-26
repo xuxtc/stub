@@ -1,18 +1,22 @@
 {
-  "name": "Lottery",
+  "name": "MockServerDemo",
   "version": "1.0.0",
   "private": true,
-  "description": "lalal",
+  "description": "demo of stub/mock server",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "stub": "nodemon app.js"
+    "mockserver": "nodemon app.js"
   },
   "license": "MIT",
   "devDependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "nodemon": "^1.11.0"
+    "babel-cli": "6.24.1",
+    "babel-register": "6.24.1",
+    "babel-preset-env": "1.5.2",
+    "body-parser": "1.17.2",
+    "cookie-parser": "1.4.3",
+    "express": "4.15.3",
+    "nodemon": "1.11.0"
   },
   "dependencies": {}
 }
